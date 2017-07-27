@@ -9,14 +9,5 @@ const server = http.createServer((req, res) =>{
       })).pipe(res);
    } else { console.log('this did not work');}
 });
-   
-   
-   
-   
-   
-
-
-
-
 
 server.listen(port);
