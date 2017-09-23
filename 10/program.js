@@ -1,47 +1,23 @@
-<<<<<<< HEAD
-const PORT = process.argv[2];
-
+const PORT = Number(process.argv[2]);
 const net = require('net');
-let d = new Date();
 
-let year = d.getFullYear();
-let month = d.getMonth();
-let day = d.getDay();
-let hour = d.getHours();
-let minutes = d.getMinutes();
+function zeroFill(i) {
+  return (i < 10 ? '0' : '') + i
+}
+function time() { 
+  let d = new Date();
 
-
+  let year = d.getFullYear();
+  let month = d.getMonth()+1;
+  let day = d.getDate();
+  let hour = d.getHours();
+  let minutes = d.getMinutes();
+  return year+'-'+zeroFill(month)+'-'+zeroFill(day)+' '+zeroFill(hour)+':'+zeroFill(minutes);
+ }
 const server = net.createServer( (socket) => {
-    socket.end(listener(socket) => {
-        time = `{year}-{month}-{day} {hour}:{minutes}`
-        // YYYY-MM-DD HH:MM 
-        return time;
-    });
+    socket.end(time()+'\n');
 });
 server.listen(PORT)
-=======
-const net = require('net')
-const port = process.argv[2];
-const d = new Date();
-
-let year =  d.getFullYear();
-let month = d.getMonth()+1;
-if (month < 10){ month= '0'+month;}
-let day = d.getDate();
-if (day < 10){ day= '0'+day;}
-let hour = d.getHours();
-if (hour < 10){ hour= '0'+hour;}
-let minutes = d.getMinutes();
-if (minutes < 10){ minutes= '0'+minutes;}
-
-let time = year+"-"+month+"-"+day+" "+hour+":"+minutes+"\n";
-
-const server = net.createServer(function listener(socket) {
-// socket handling logic
-    socket.end( time );
-});
-
-server.listen(port);
 
 /***************************
 *     Official Solution    *
@@ -67,4 +43,3 @@ server.listen(port);
 //     })
 
 //     server.listen(Number(process.argv[2]))
->>>>>>> 8ff33ec266d71b3f5ebfec66f5123c957ec70d97
