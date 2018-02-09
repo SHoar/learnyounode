@@ -1,9 +1,9 @@
 const http = require('http');
 const fs = require('fs');
-const port = process.argv[2];
+const port = Number(process.argv[2]);
 const filePath = process.argv[3];
 
-const server = http.createServer(function callback(request, response)  {
+const server = http.createServer((request, response) =>  {
    let readStream = fs.createReadStream(filePath);
    readStream.pipe(response);
 });

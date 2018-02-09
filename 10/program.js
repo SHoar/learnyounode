@@ -1,12 +1,12 @@
-const PORT = Number(process.argv[2]);
 const net = require('net');
+const PORT = Number(process.argv[2]);
 
 function zeroFill(i) {
   return (i < 10 ? '0' : '') + i
 }
+
 function time() { 
   let d = new Date();
-
   let year = d.getFullYear();
   let month = d.getMonth()+1;
   let day = d.getDate();
@@ -14,9 +14,11 @@ function time() {
   let minutes = d.getMinutes();
   return year+'-'+zeroFill(month)+'-'+zeroFill(day)+' '+zeroFill(hour)+':'+zeroFill(minutes);
  }
+
 const server = net.createServer( (socket) => {
     socket.end(time()+'\n');
 });
+
 server.listen(PORT)
 
 /***************************

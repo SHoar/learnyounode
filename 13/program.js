@@ -2,7 +2,7 @@ const http = require('http');
 const url = require('url');
 const port = process.argv[2];
 
-let isoTime = new Date();
+let isoTime = new Date().toISOString();
 
 const server = http.createServer((req, res) =>{
    if (req.method !== 'GET' ){
@@ -26,6 +26,6 @@ const server = http.createServer((req, res) =>{
    }
 });
 
-
+server.get(url);
 
 server.listen(port);
